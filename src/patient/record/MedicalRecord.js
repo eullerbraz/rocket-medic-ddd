@@ -1,8 +1,8 @@
-const { Diagnosis } = require('./diagnosis');
-const { Medication } = require('./medication');
-const { Treatment } = require('./treatment');
+import { Diagnosis } from './Diagnosis.js';
+import { Medication } from './Medication.js';
+import { Treatment } from './Treatment.js';
 
-class MedicalRecord {
+export class MedicalRecord {
   constructor() {
     this.diagnoses = [];
     this.treatments = [];
@@ -50,5 +50,3 @@ class MedicalRecord {
     );
   }
 }
-
-module.exports = MedicalRecord;

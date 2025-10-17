@@ -1,4 +1,4 @@
-class Exam {
+export class Exam {
   constructor(id, type, result, date, local, responsible, patient) {
     this.id = id;
     this.type = type;
@@ -9,5 +9,3 @@ class Exam {
     this.patient = patient;
   }
 }
-
-module.exports = Exam;

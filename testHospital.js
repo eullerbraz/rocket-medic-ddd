@@ -1,76 +1,81 @@
-const Address = require('./address');
-const Consulta = require('./appointment');
-const EmergencyContact = require('./emergency-contact');
-const Exame = require('./exam');
-const Doctor = require('./doctor');
-const Paciente = require('./patient');
-const Prontuario = require('./medical-record');
+import { Doctor } from './src/doctor/Doctor.js';
+import { Allergy } from './src/patient/Allergy.js';
+import { Appointment } from './src/patient/Appointment.js';
+import { Exam } from './src/patient/Exam.js';
+import { Patient } from './src/patient/Patient.js';
+import { Diagnosis } from './src/patient/record/Diagnosis.js';
+import { Medication } from './src/patient/record/Medication.js';
+import { Treatment } from './src/patient/record/Treatment.js';
+import { Address } from './src/shared/Address.js';
+import { EmergencyContact } from './src/shared/EmergencyContact.js';
 
-const address1 = new Address(
-  'Rua 1',
+const address = new Address(
+  'Rua das Flores',
   '123',
-  'Cidade 1',
-  'Estado 1',
+  'São Paulo',
+  'SP',
   '12345-678'
 );
 
-const emergencyContact = new EmergencyContact('Contato 1', 'Telefone 1');
+const emergencyContact = new EmergencyContact('Maria Silva', '(11) 98765-4321');
 
-const paciente1 = new Paciente(
+const patient = new Patient(
   '1',
-  '123456789',
-  'João',
+  '123.456.789-00',
+  'João Silva',
   '1990-01-01',
   'Masculino',
-  'A+',
-  'Alergia 1',
-  address1,
-  'Telefone 1',
-  'Email 1',
+  'O+',
+  address,
+  '(11) 98888-4321',
+  'joao.silva@example.com',
   emergencyContact
 );
 
-const doctor1 = new Doctor(
+const doctor = new Doctor(
   '1',
-  'CRM 1',
-  'Dr. Médico',
-  ['Especialidade 1', 'Especialidade 2'],
-  'Telefone 1'
+  'CRM/SP 123456',
+  'Dr. Carlos',
+  ['Cardiologia', 'Clinica Geral'],
+  '(11) 94321-9876'
 );
 
-doctor1.addWorkingHours('Segunda-feira', '08:00 - 12:00');
-doctor1.addWorkingHours('Quarta-feira', '12:00 - 17:00');
+const allergy = new Allergy('Penicilina');
 
-const consulta1 = new Consulta(
+const appointment = new Appointment(
   '1',
-  '2023-01-01',
-  paciente1,
-  doctor1,
-  'Motivo da consulta',
+  '2025-01-01',
+  patient,
+  doctor,
+  'Dor no peito',
   'Agendada',
-  'Observações da consulta'
+  'Paciente relatou uma dor no peito após esforços fisicos.'
 );
 
-const exame1 = new Exame(
+const exam = new Exam(
   '1',
-  'Tipo de exame',
-  'Resultado do exame',
-  '2023-01-01',
-  'Local do exame',
-  'Responsável pelo exame',
-  paciente1
+  'Hemograma',
+  'Normal',
+  '2025-01-01',
+  'Laboratório X',
+  'Dra. Ana',
+  patient
 );
 
-const prontuario1 = new Prontuario('1', paciente1);
+const diagnosis = new Diagnosis('Hipertensão');
+const treatment = new Treatment('Redução no consumo de sal');
+const medication = new Medication('Captopril', '25mg');
 
-paciente1.agendarConsulta(consulta1);
-paciente1.adicionarExame(exame1);
+doctor.addWorkingHours('Segunda', '14:00-18:00');
+doctor.addWorkingHours('Quarta', '09:00-12:00');
 
-prontuario1.adicionarDiagnostico('Diagnóstico 1');
+patient.addAllergy(allergy);
+patient.scheduleAppointment(appointment);
+patient.addExam(exam);
 
-prontuario1.adicionarTratamento('Tratamento 1');
+patient.medicalRecord.addDiagnosis(diagnosis);
+patient.medicalRecord.addTreatment(treatment);
+patient.medicalRecord.addMedication(medication);
 
-prontuario1.adicionarMedicamento('Medicamento 1');
-
-console.log(prontuario1);
-console.log(doctor1.listWorkingHours());
+console.log(patient);
+console.log(doctor);

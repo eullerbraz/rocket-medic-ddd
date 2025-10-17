@@ -7,5 +7,3 @@ export class Allergy {
     return this.type === allergy.type;
   }
 }
-
-module.exports = Allergy;

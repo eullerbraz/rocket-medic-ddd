@@ -8,5 +8,3 @@ export class Medication {
     return this.name === medication.name && this.dosage === medication.dosage;
   }
 }
-
-module.exports = Medication;

@@ -1,10 +1,10 @@
-const { Allergy } = require('./allergy');
-const Appointment = require('./appointment');
-const { Diagnosis } = require('./diagnosis');
-const Exam = require('./exam');
-const MedicalRecord = require('./medical-record');
-const { Medication } = require('./medication');
-const { Treatment } = require('./treatment');
+import { Allergy } from './Allergy.js';
+import { Appointment } from './Appointment.js';
+import { Exam } from './Exam.js';
+import { Diagnosis } from './record/Diagnosis.js';
+import { MedicalRecord } from './record/MedicalRecord.js';
+import { Medication } from './record/Medication.js';
+import { Treatment } from './record/Treatment.js';
 
 export class Patient {
   constructor(

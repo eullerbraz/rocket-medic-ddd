@@ -7,5 +7,3 @@ export class Diagnosis {
     return this.description === diagnosis.description;
   }
 }
-
-module.exports = Diagnosis;
